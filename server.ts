@@ -1,13 +1,18 @@
 /// <reference path="_reference.ts" />
-import http = require('http');
+import express = require('express');
 
-var port:number = process.env.port || 3000;
-var server:http.Server = http.createServer(
-    function(req:http.ServerRequest, res:http.ServerResponse){
-    res.writeHead(200,{'Content-Type': 'text/plain'});
-    res.end("Hello Node !");
+var app:express.Express = express();
+
+var port:number = process.env.port || 3000
+// main route
+app.get('/', function(rep:express.Request, res:express.Respone) {
+    res.send('hello Expree!');
+});
+//route for info page
+app.get('/info', function(req:express.Request, res:express.Respone){
+   res.send('Your Custom Info Page goes here'); 
 });
 
-server.listen(port, function(){
-    console.log("Server Started....Listening on port: " + port);
+app.listen(port, function(){
+    console.log("App server Started ... on port:" + port);
 });

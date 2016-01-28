@@ -1,11 +1,16 @@
 /// <reference path="_reference.ts" />
-var http = require('http');
+var express = require('express');
+var app = express();
 var port = process.env.port || 3000;
-var server = http.createServer(function (req, res) {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end("Hello Node !");
+// main route
+app.get('/', function (rep, res) {
+    res.send('hello Expree!');
 });
-server.listen(port, function () {
-    console.log("Server Started....Listening on port: " + port);
+//route for info page
+app.get('/info', function (req, res) {
+    res.send('Your Custom Info Page goes here');
+});
+app.listen(port, function () {
+    console.log("App server Started ... on port:" + port);
 });
 //# sourceMappingURL=server.js.map
